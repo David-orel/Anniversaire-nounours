@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyeux Anniversaire 💙</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="intro-active">
+
+    <!-- INTRO -->
+    <div id="intro">
+        <div class="intro-content">
+            <h1>J’ai quelque chose pour toi 💙</h1>
+            <p>Un jour spécial pour une personne spéciale</p>
+            <button id="startBtn">Clique ici mon amour</button>
+        </div>
+    </div>
+
+    <!-- MUSIQUE -->
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mp3">
+    </audio>
+
+    <div id="mainContent">
+
+        <header>
+            <div class="logo">Pour Toi 💙</div>
+            <div class="menu-toggle" id="menuToggle">☰</div>
+
+            <nav id="navMenu">
+                <a href="#home">Accueil</a>
+                <a href="#message">Mon Message</a>
+                <a href="#memories">Nos Souvenirs</a>
+                <a href="#video">Surprise</a>
+            </nav>
+        </header>
+
+        <!-- HERO -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Joyeux Anniversaire</h1>
+                <h2>Mon Amour 💙</h2>
+                <p>La plus belle personne de ma vie</p>
+            </div>
+        </section>
+
+        <!-- MESSAGE -->
+        <section id="message" class="section reveal">
+            <h2>Quelques mots pour toi</h2>
+            <p class="typewriter">
+                Depuis que tu es entrée dans ma vie,
+                tout est devenu plus lumineux.
+
+                Ton sourire est mon ciel bleu,
+                ta voix est ma douceur,
+                et ton amour est mon plus beau cadeau.
+
+                Joyeux anniversaire à la femme la plus incroyable du monde 💙
+            </p>
+        </section>
+
+        <!-- SOUVENIRS -->
+        <section id="memories" class="section alt reveal">
+            <h2>Nos plus beaux moments</h2>
+            <div class="gallery-grid">
+                <div class="img" style="background-image:url('photo1.jpg')"></div>
+                <div class="img" style="background-image:url('photo2.jpg')"></div>
+                <div class="img" style="background-image:url('photo3.jpg')"></div>
+                <div class="img" style="background-image:url('photo4.jpg')"></div>
+            </div>
+        </section>
+
+        <!-- POURQUOI JE T'AIME -->
+        <section class="section reveal">
+            <h2>Pourquoi je t’aime 💙</h2>
+            <div class="love-grid">
+                <div class="love-card">Parce que ton sourire illumine mes journées</div>
+                <div class="love-card">Parce que tu me comprends sans parler</div>
+                <div class="love-card">Parce que tu rends tout plus beau</div>
+                <div class="love-card">Parce que tu es mon évidence</div>
+                <div class="love-card">Parce que ta présence me rassure</div>
+                <div class="love-card">Parce que tu es mon plus beau choix</div>
+            </div>
+        </section>
+
+        <!-- TES QUALITÉS -->
+        <section class="section alt reveal">
+            <h2>Ce qui te rend unique 🌟</h2>
+            <ul class="qualities">
+                <li>✨ Ta gentillesse infinie</li>
+                <li>✨ Ton intelligence</li>
+                <li>✨ Ton humour</li>
+                <li>✨ Ton cœur immense</li>
+                <li>✨ Ta sensibilité</li>
+                <li>✨ Ta force intérieure</li>
+            </ul>
+        </section>
+
+        <!-- NOTRE FUTUR -->
+        <section class="section reveal">
+            <h2>Notre futur 💌</h2>
+            <p>
+                Je rêve encore de mille moments avec toi.
+                De voyages, de rires, de projets partagés.
+                De soirées simples qui deviennent des souvenirs inoubliables.
+                Peu importe où la vie nous mène,
+                tant que je peux tenir ta main,
+                je sais que je serai à ma place.
+            </p>
+        </section>
+
+        <!-- VIDEO (MAINTENANT EN DERNIER) -->
+        <section id="video" class="section reveal">
+            <h2>Une petite surprise 🎥</h2>
+            <div class="video-container">
+                <video controls>
+                    <source src="video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
+
+        <footer>
+            <p>Fait avec tout mon amour 💙</p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
