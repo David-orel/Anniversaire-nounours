@@ -1,4 +1,4 @@
-﻿/* ========================== RESET ET BASE ========================== */
+/* ========================== RESET ET BASE ========================== */
 
 * {
     margin: 0;
@@ -198,7 +198,7 @@ footer {
 .heart {
     position: fixed;
     color: #4da6ff;
-    animation: rise 5s linear forwards;
+    /*animation: rise 5s linear forwards;*/
 }
 
 @keyframes rise {
@@ -214,18 +214,17 @@ footer {
 }
 /* ========================== RESPONSIVE ========================== */
 
-@media(max-width:768px) {
-    header {
-        padding: 20px;
-    }
+    @media(max-width:768px) {
+        header {
+            padding: 20px;
+        }
 
-    .hero-content h2 {
-        font-size: 50px;
+        .hero-content h2 {
+            font-size: 50px;
+        }
     }
-}
-
-/* SUPPRESSION TOTALE DES PUces */
-ul {
+    /* SUPPRESSION TOTALE DES PUces */
+    ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -337,3 +336,157 @@ body {
     overflow-x: hidden;
 }
 
+
+/* ========================== CAROUSEL ROMANTIQUE ========================== */
+
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 50px auto 0;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(77,166,255,0.3);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.8s ease-in-out;
+}
+
+/* ================= CINEMA BLUR CAROUSEL ================= */
+
+.slide {
+    min-width: 100%;
+    height: 550px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Fond flouté */
+.slide-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(25px) brightness(0.7);
+    transform: scale(1.2);
+}
+
+/* Image nette au centre */
+.slide img {
+    position: relative;
+    max-height: 85%;
+    max-width: 85%;
+    object-fit: contain;
+    border-radius: 20px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+    animation: cinematicZoom 8s ease-in-out infinite alternate;
+}
+
+/* Zoom doux style film */
+@keyframes cinematicZoom {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.05);
+    }
+}
+
+/* Responsive */
+@media(max-width:768px) {
+    .slide {
+        height: 400px;
+    }
+
+        .slide img {
+            max-width: 95%;
+            max-height: 80%;
+        }
+}
+
+/* Boutons */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    color: white;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    transition: 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prev {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+    .prev:hover, .next:hover {
+        background: rgba(255,255,255,0.35);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+/* Dots */
+.dots {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+}
+
+    .dots span {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        background: rgba(255,255,255,0.6);
+        margin: 0 5px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .dots span.active {
+            background: white;
+            transform: scale(1.3);
+        }
+
+/* Responsive */
+@media(max-width:768px) {
+    .slide {
+        height: 350px;
+    }
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 850px;
+    height: 550px;
+    margin: 50px auto 0;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+}
+
+.carousel-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
