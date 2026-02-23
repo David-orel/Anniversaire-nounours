@@ -347,6 +347,7 @@ body {
     overflow: hidden;
     border-radius: 20px;
     box-shadow: 0 15px 40px rgba(77,166,255,0.3);
+
 }
 
 .carousel-track {
@@ -356,14 +357,48 @@ body {
 
 /* ================= CINEMA BLUR CAROUSEL ================= */
 
-.slide {
-    min-width: 100%;
-    height: 550px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+@media (max-width: 768px) {
+
+    /* Slide - adaptation mobile */
+    .slide {
+ display: flex;
+            flex-direction: column; /* pour aligner image au centre */
+            justify-content: center; /* centre verticalement */
+            align-items: center;
+            position: relative;
+            width: 100%;
+            min-height: 80vh; /* hauteur minimale */
+            padding: 20px 0; /* espace au-dessus et en dessous */
+      
+    }
+
+    /* Fond flou */
+    .slide-bg {
+        height: 100%;           /* couvre toute la slide */
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+    }
+
+    /* Image nette */
+    .slide img {
+        max-width: 95%;         /* s’adapte à la largeur mobile */
+        max-height: 60vh;       /* limite la hauteur pour que ça ne déborde pas */
+        object-fit: contain;    /* conserve l’image portrait entière */
+
+    }
+
+    /* Flèches */
+    .prev, .next {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    /* Points de défilement */
+    .dots {
+        bottom: 10px;
+    }
 }
 
 /* Fond flouté */
@@ -385,6 +420,7 @@ body {
     border-radius: 20px;
     box-shadow: 0 25px 60px rgba(0,0,0,0.4);
     animation: cinematicZoom 8s ease-in-out infinite alternate;
+
 }
 
 /* Zoom doux style film */
@@ -489,4 +525,57 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
+}
+
+/* ================= MOBILE CINEMA ================= */
+/* ========================= CAROUSEL MOBILE CINÉMA ========================= */
+@media (max-width: 768px) {
+
+        .slide {
+            display: flex;
+            flex-direction: column; /* pour aligner image au centre */
+            justify-content: center; /* centre verticalement */
+            align-items: center;
+            position: relative;
+            width: 100%;
+            min-height: 80vh; /* hauteur minimale */
+            padding: 20px 0; /* espace au-dessus et en dessous */
+        }
+
+        /* Fond flou */
+        .slide-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover; /* couvre toute la slide */
+            background-position: center; /* centre la zone principale */
+            filter: blur(25px) brightness(0.6);
+            transform: scale(1.2);
+            z-index: 0;
+        }
+
+        /* Image nette centrée */
+    .slide img {
+        max-width: 90%;
+        max-height: 70vh; /* limite la hauteur pour éviter de toucher le haut */
+        object-fit: contain;
+        border-radius: 20px;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+        z-index: 1;
+    }
+    }
+
+    /* Flèches */
+    .prev, .next {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+        background: rgba(255,255,255,0.15);
+    }
+
+    /* Points */
+    .dots {
+        bottom: 15px;
+    }
 }
