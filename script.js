@@ -114,53 +114,47 @@ style.innerHTML = `
 document.head.appendChild(style);
 
 /*********************************
-* VIDEO FULLSCREEN + BAISSE MUSIQUE
+* VIDEO MOBILE VERSION PRO
 *********************************/
 
 const video = document.querySelector("video");
+const videoSection = document.querySelector(".video-container");
 
 if (video && music) {
 
-    // Quand on lance la vidéo
     video.addEventListener("play", () => {
 
-        // 📉 Baisser la musique progressivement
-        let originalVolume = music.volume;
+        // 🔊 Baisser musique
         let fadeDown = setInterval(() => {
             if (music.volume > 0.2) {
                 music.volume -= 0.05;
             } else {
                 clearInterval(fadeDown);
             }
-        }, 100);
+        }, 80);
 
-        // 🎥 Plein écran automatique
-        if (video.requestFullscreen) {
-            video.requestFullscreen();
-        } else if (video.webkitRequestFullscreen) { // Safari
-            video.webkitRequestFullscreen();
-        } else if (video.msRequestFullscreen) { // IE
-            video.msRequestFullscreen();
+        // 📱 iPhone → faux fullscreen
+        if (window.innerWidth < 768) {
+            videoSection.classList.add("video-fullscreen");
         }
     });
 
-    // Quand la vidéo est mise en pause ou se termine
-    video.addEventListener("pause", () => {
-        restoreMusic();
-    });
+    video.addEventListener("ended", closeVideo);
+    video.addEventListener("pause", closeVideo);
 
-    video.addEventListener("ended", () => {
-        restoreMusic();
-    });
+    function closeVideo() {
 
-    function restoreMusic() {
+        // 🔊 Remonter musique
         let fadeUp = setInterval(() => {
             if (music.volume < 0.9) {
                 music.volume += 0.05;
             } else {
                 clearInterval(fadeUp);
             }
-        }, 100);
+        }, 80);
+
+        // Retirer fullscreen custom
+        videoSection.classList.remove("video-fullscreen");
     }
 }
 /*********************************
