@@ -85,7 +85,6 @@ function createHeart() {
     }, 6000);
 }
 
-// Vitesse différente mobile / desktop
 setInterval(createHeart, window.innerWidth < 768 ? 1500 : 800);
 
 /*********************************
@@ -114,55 +113,38 @@ style.innerHTML = `
 document.head.appendChild(style);
 
 /*********************************
-* VIDEO FULLSCREEN + BAISSE MUSIQUE
+* VIDEO + STOP MUSIQUE
 *********************************/
 
 const video = document.querySelector("video");
 
 if (video && music) {
 
-    // Quand on lance la vidéo
+    // ▶️ Lecture vidéo
     video.addEventListener("play", () => {
 
-        // 📉 Baisser la musique progressivement
-        let originalVolume = music.volume;
-        let fadeDown = setInterval(() => {
-            if (music.volume > 0.2) {
-                music.volume -= 0.05;
-            } else {
-                clearInterval(fadeDown);
-            }
-        }, 100);
+        // 🔇 Stop musique
+        music.pause();
 
-        // 🎥 Plein écran automatique
-        if (video.requestFullscreen) {
-            video.requestFullscreen();
-        } else if (video.webkitRequestFullscreen) { // Safari
-            video.webkitRequestFullscreen();
-        } else if (video.msRequestFullscreen) { // IE
-            video.msRequestFullscreen();
+        // fullscreen uniquement sur desktop
+        if (window.innerWidth > 768) {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            }
         }
     });
 
-    // Quand la vidéo est mise en pause ou se termine
+    // ⏸ pause vidéo
     video.addEventListener("pause", () => {
-        restoreMusic();
+        music.play().catch(() => { });
     });
 
+    // 🔚 fin vidéo
     video.addEventListener("ended", () => {
-        restoreMusic();
+        music.play().catch(() => { });
     });
-
-    function restoreMusic() {
-        let fadeUp = setInterval(() => {
-            if (music.volume < 0.9) {
-                music.volume += 0.05;
-            } else {
-                clearInterval(fadeUp);
-            }
-        }, 100);
-    }
 }
+
 /*********************************
  * CAROUSEL CINEMA FADE - STABLE
  *********************************/
@@ -175,10 +157,8 @@ const dotsContainer = document.querySelector(".dots");
 let currentIndex = 0;
 let autoSlide;
 
-/* Vider les anciens dots si présents */
 dotsContainer.innerHTML = "";
 
-/* Initialisation des slides */
 slides.forEach((slide, index) => {
     slide.style.opacity = index === 0 ? "1" : "0";
     slide.style.position = "absolute";
@@ -186,7 +166,6 @@ slides.forEach((slide, index) => {
     slide.style.transition = "opacity 1.5s ease";
 });
 
-/* Création des dots */
 slides.forEach((_, index) => {
     const dot = document.createElement("span");
     if (index === 0) dot.classList.add("active");
@@ -199,14 +178,12 @@ slides.forEach((_, index) => {
     dotsContainer.appendChild(dot);
 });
 
-/* Met à jour l'état des dots */
 function updateDots() {
     const dots = document.querySelectorAll(".dots span");
     dots.forEach(dot => dot.classList.remove("active"));
     dots[currentIndex].classList.add("active");
 }
 
-/* Aller à une slide précise */
 function goToSlide(index) {
     slides[currentIndex].style.opacity = "0";
     currentIndex = index;
@@ -214,7 +191,6 @@ function goToSlide(index) {
     updateDots();
 }
 
-/* Slide suivante / précédente */
 function nextSlide() {
     let newIndex = (currentIndex + 1) % slides.length;
     goToSlide(newIndex);
@@ -225,7 +201,6 @@ function prevSlide() {
     goToSlide(newIndex);
 }
 
-/* Événements boutons */
 nextBtn.addEventListener("click", () => {
     nextSlide();
     resetAutoSlide();
@@ -236,7 +211,6 @@ prevBtn.addEventListener("click", () => {
     resetAutoSlide();
 });
 
-/* Auto fade */
 function startAutoSlide() {
     autoSlide = setInterval(nextSlide, 6000);
 }
@@ -246,5 +220,4 @@ function resetAutoSlide() {
     startAutoSlide();
 }
 
-/* Lancement automatique */
 startAutoSlide();
